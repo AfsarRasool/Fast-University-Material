@@ -1,0 +1,164 @@
+1. IN Subquery
+Question
+
+Retrieve the names of employees who work in the Research department.
+
+EMPLOYEE(Fname, Ssn, Dno)
+DEPARTMENT(Dname, Dnumber)
+
+Select Fname 
+from EMPLOYEE
+where dno IN (
+select Dnumber 
+from DEPARTMENT
+where Dname = 'Research'
+)
+
+2.
+Question
+
+Retrieve the project names controlled by the department named Administration.
+
+PROJECT(Pname, Pnumber, Dnum)
+DEPARTMENT(Dname, Dnumber)
+
+
+select Pname from PROJECT
+where dnum in (
+select Dnumber from Department 
+where Dname = 'Administration'
+);
+
+3. Two Nested Queries with OR
+Question
+
+Retrieve the project numbers of projects where an employee named Brown is involved either:
+
+as a department manager
+or as a worker
+
+This is almost identical to the Smith example.
+
+select Pnumber from Projects
+where Pnumber in (
+select pno from works_on, employee
+where Essn = ssn AND Lname = 'Brown'
+)
+OR
+Pnumber in (
+select Pnumber from Projecct, department, employee
+where 
+dnum = Dnumber AND Mgr_ssn = Ssn AND Fname = 'Brown'
+);
+
+4. EXISTS (Correlated Query)
+Question
+
+Retrieve the names of employees who have at least one dependent.
+
+EMPLOYEE(Fname, Ssn)
+DEPENDENT(Essn)
+
+Hint
+
+For each employee, check whether a dependent exists.
+
+select Fname from Employee 
+where Ssn exists (
+select * from Dependent, Employee E
+where Essn = E.Ssn
+)
+
+5. EXISTS (Correlated Query)
+Question
+
+Retrieve the names of employees who work on at least one project.
+
+EMPLOYEE(Fname, Ssn)
+WORKS_ON(Essn, Pno)
+
+Think
+
+For each employee row:
+Does a matching Essn exist in WORKS_ON?
+
+Select Fname from Employee
+where ssn exist (
+select Essn from Works_on 
+)
+
+6. Same as Slide Example
+Question
+
+Retrieve the names of employees whose dependent has:
+
+the same first name
+the same sex
+
+EMPLOYEE(Fname, Ssn, Sex)
+DEPENDENT(Essn, Dependent_name, Sex)
+
+Select Fname from Employee 
+where Ssn exists (
+select Essn from Dependent, Employee E
+where Dependent_name = E.Fname AND E.Sex = Sex
+);
+
+7. Correlated Query
+Question
+
+Retrieve employees who are department managers.
+
+EMPLOYEE(Fname, Ssn)
+DEPARTMENT(Mgr_ssn)
+
+Hint
+
+For each employee, check whether their SSN appears as a manager.
+
+Select Fname from Employee 
+where Ssn in (
+select Mgr_ssn from Department
+);
+
+(how is this correlated)
+Select Fname from Employee Where Ssn exists (
+select Mgr_ssn from
+)
+
+8. Nested Query with NOT IN
+Question
+
+Retrieve names of employees who do not work on any project.
+
+EMPLOYEE(Fname, Ssn)
+WORKS_ON(Essn)
+
+Think
+
+Get all employee SSNs from WORKS_ON, then exclude them.
+
+select Fname from Employee 
+where Ssn not in (
+select Essn from Works_on
+)
+
+10. Challenge Question
+Question
+
+Retrieve project names where an employee named Smith works.
+
+PROJECT(Pname, Pnumber)
+WORKS_ON(Essn, Pno)
+EMPLOYEE(Ssn, Lname)
+
+Steps
+Find Smith's SSN.
+Find projects Smith works on.
+Retrieve project names.
+
+Select Pname from Projects 
+where Pnumber in (
+select pno from works_on, Employee E
+where Essn = E.Ssn AND Lname = 'Smith'
+)
