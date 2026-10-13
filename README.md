@@ -1,3 +1,1 @@
-# Fast-University-Material
-In this repository I have shared my Assignments of Programing subject  
-## First Semester C Language
+FAST NUCES Karachi - BSCY Semesters Repository | Access notes, assignments, past papers, & more. For queries or suggestions, contact k242016@nu.edu.pk.
