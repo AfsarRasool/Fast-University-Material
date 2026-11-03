@@ -1,0 +1,11 @@
+Deferred Cancellation (Default)
+
+Threads cancel only a specific point (cancellation point)
+
+safe method => cancel properly , data return to parent thread, and resources clean and free from the memory for the new upcoming threads.
+
+
+sleep() , read() , pthread_join();
+
+pthread_join(tid,NULL);  //some how called cancellation point
+pthread_cancel(tid);

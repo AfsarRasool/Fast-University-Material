@@ -1,0 +1,85 @@
+int [10] = {0,1,2,....9}
+
+5 Threads 
+
+Core 1 = T2;
+Core 2 = T3,
+Core 3 = T1;
+Core 4 = T5;
+Core 5 = T4;
+
+Data Parallelism
+
+T5 = [0-1] =sum1
+T3=[2-3] =sum2
+T4 =[4-5] = sum3
+T1=[6-7] = sum4
+T2=[8-9] = sum5
+
+= Let say = Sum of Array
+Parent Thread T.SUM = sum1+sum2...+sum5
+int [10] = {0,1,2,....9}
+
+5 Threads 
+
+Core 1 = T2;
+Core 2 = T3,
+Core 3 = T1;
+Core 4 = T5;
+Core 5 = T4;
+
+
+T2 = {0,1,2,....9} = Avg
+T3= {0,1,2,....9} = Sum
+T4= {0,1,2,....9} = Max
+T1= {0,1,2,....9} = Min
+T5 ={0,1,2,....9} = Duplicates
+
+Task Parallelism
+
+
+
+
+
+
+Data =  P = 1-S (1-0.25) =0.75 = 75%
+S= 25 % = 0.25 
+N=1 to 2
+
+
+Speedup = 1/0.25+(0.75/1) = 1
+Speedup = 1/0.25+(0.75/2) = 1.6 
+Speedup = 1/0.25+(0.75/3) = 2
+Speedup = 1/0.25+(0.75/4) = 2.3
+
+S=10 % = 0.10
+P =90% = 0.90
+
+Speedup = 1/0.10+(0.90/1) = 1
+Speedup = 1/0.10+(0.90/2) = 1.8
+Speedup = 1/0.10+(0.90/3) = 2.5
+Speedup = 1/0.10+(0.90/4) = 3.0
+Speedup = 1/0.10+(0.90/8) = 4.7
+
+S=5 % = 0.05
+P =90% = 0.95
+
+Speedup = 1/0.05+(0.95/1) = 1
+Speedup = 1/0.05+(0.95/2) = 1.9
+Speedup = 1/0.05+(0.95/3) = 2.7
+Speedup = 1/0.05+(0.95/4) = 3.5
+Speedup = 1/0.05+(0.95/5) = 4.16
+
+
+
+
+
+
+
+
+
+
+
+
+
+

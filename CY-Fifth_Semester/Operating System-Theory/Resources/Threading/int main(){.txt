@@ -1,0 +1,81 @@
+int main(){
+
+pthread_t tid;
+pthread_create(&tid,NULL,task,NULL);
+
+pthread_exit(NULL); //Only Main Thread is Exit Here at This Point
+
+}
+
+void*task(*void arg){
+printf("This is a Thread");
+
+}
+
+_______________________________________________________________
+
+void*task(*void arg){
+printf("This is a Thread");
+pthread_exit("Done"); //Child Thread Exit Here But return a string value of its status which is Done;
+
+}
+
+int main(){
+pthread_t t1;
+void *res;
+
+pthread_create(&t1,NULL,task,NULL);
+pthread_join(t1,&res);
+
+printf("Child Thread Exit with the status of %s\n",(char*)res);
+
+return 0;
+
+}
+
+
+_______________________________________________________________
+
+int main(){
+pthread_t2;
+
+pthread_create(&t2, NULL,task,NULL):
+
+return 0;
+
+main ends , --whole process end 
+destroy parent and child both
+-------------------------------------
+int main(){
+pthread_t2;
+
+pthread_create(&t2, NULL,task,NULL):
+
+pthread_exit(NULL);
+}
+
+main ends , --whole process not end
+destroy parent only  and child continue its work
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

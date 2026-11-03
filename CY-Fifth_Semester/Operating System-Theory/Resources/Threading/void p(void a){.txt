@@ -1,0 +1,57 @@
+void *p(void *a){
+printf("Thread is running");
+pthread_exit("Done"); // Thread exits here
+}
+
+int main(){
+pthread _t tid;
+void *res;
+pthread_create(&tid,NULL,p,NULL);
+pthread_join(tid,&res);
+printf("Thread exit with a status of returned value %s\n",(char*)res);
+return 0;
+}
+
+
+---------------------------------------------------------------------
+
+int main(){
+pthread_t tid1;
+pthread_create(&tid1,NULL,task,NULL);
+
+pthread_exit(NULL); // no child thread will return the exit/status data to its parent thread why? because we didnot write the join command ==> if i write join() then parent cannot exit because join() command enables or force the parent thread to be wait until the child thread is done and return its status which is NULL in case to its parent thread
+}
+
+int main(){
+pthread_t tid1;
+pthread_create(&tid1,NULL,task,NULL);
+
+return 0; 
+
+whole process killed main thread exit and child thread exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
